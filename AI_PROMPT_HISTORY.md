@@ -43,5 +43,3 @@ AI tools were used in accordance with the module's AI usage policy to generate, 
 13. "Can I call the summary function Generative AI?" — Reviewed lecture materials and decided no, removed the label.
 
 14. "Create a GitHub repo, add README, and push everything."
-
-15. "Write the project report as a team journey, around 1000 words."
