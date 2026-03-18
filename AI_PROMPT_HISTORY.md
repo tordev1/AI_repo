@@ -1,7 +1,7 @@
 # AI Prompt History — Student Success Copilot
 
 **Tool Used:** Claude Code (Claude Opus 4.6 by Anthropic)
-**Team Members:**
+**Team Members:** 00020472, 00021430
 **Date:** March 2026
 
 AI tools were used in accordance with the module's AI usage policy to generate, debug, and improve code for this project.
