@@ -1,7 +1,7 @@
 # Student Success Copilot — Summary Report
 
 **Module:** 4COSC016C — Introduction to AI
-**Team Members:** [Student ID 1], [Student ID 2]
+**Team Members:** 00020472, 00021430
 **Project:** Hybrid AI System — Student Success Copilot
 
 ---
