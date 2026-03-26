@@ -83,3 +83,11 @@ AI tools were used in accordance with the module's AI usage policy to generate, 
 29. "the tunnel is asking for a password thats so annoying. switch to something that just works"
 
 30. "can you add an open in colab badge to the notebooks so its one click to open?"
+
+---
+
+## Revenue & Business Planning Session — March 26, 2026
+
+31. "Please run AI_repo."
+
+32. "I want to recall all the prompts I used — I forgot to screenshot them. Please recall all the prompts we have used, make them grammatically correct, and write them all in markdown file format."
