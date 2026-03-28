@@ -17,13 +17,13 @@
             --green: #4ade80;
             --yellow: #facc15;
             --red: #f87171;
-            --orange: #fb923c;
+            --amber: #fb923c;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', system-ui, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
@@ -168,7 +168,7 @@
         .fn { color: var(--accent); }
         .str { color: var(--green); }
         .cmt { color: var(--text-muted); font-style: italic; }
-        .num-lit { color: var(--orange); }
+        .num-lit { color: var(--amber); }
 
         /* Cards */
         .card-grid {
@@ -527,8 +527,8 @@ succ.priority = <span class="fn">heuristic</span>(succ)</code></pre>
         <p>Starts with <strong>known facts</strong> and fires rules to derive <strong>new facts</strong> until no more rules apply.</p>
 
         <div class="flow">
-            <div class="flow-box" style="border-color:var(--orange)">
-                <h4 style="color:var(--orange)">Input Facts</h4>
+            <div class="flow-box" style="border-color:var(--amber)">
+                <h4 style="color:var(--amber)">Input Facts</h4>
                 <p style="color:var(--text-muted);font-size:0.85rem;">stress=8.5, confidence=3.0, deadline=4, workload=5, study=8h</p>
             </div>
             <div class="flow-arrow">&darr; <span style="font-size:0.7rem;color:var(--text-muted)">R1 fires: stress &ge; 8</span></div>
