@@ -1,0 +1,61 @@
+Student Success Copilot
+Project Report
+
+Module: 4COSC016C Introduction to Artificial Intelligence
+Authors: Sanjar and Muhammadjon
+Date: March 2026
+
+
+How It All Started
+
+We did not treat this as just another university assignment. From the very first time we sat down to talk about it, we both knew we wanted to do something properly. We planned everything together from the beginning and figured out what the system would do, how each component would fit together, and what kind of experience a student would actually have using it. We gave it a name early on too. Student Success Copilot. Not a tool that makes decisions for you, but something that sits alongside you, reads your situation honestly, and helps you figure out what to do next. That idea of a copilot rather than an authority shaped every decision we made from that point forward.
+
+
+What We Built
+
+We built a full-stack AI application with a clean web interface that takes a student through a simple three-step process. First they enter their personal situation including their stress level, study hours, confidence, how many modules they are juggling, and how close their nearest deadline is. Then they add their subjects with difficulty ratings and how many hours they need for each one. After that the system runs four separate AI components and brings everything together into one unified assessment plus a personalised weekly study schedule. Everything responds to what that specific student enters so no two people get the same output. It is a live interactive system and not a static page with fixed advice.
+
+
+The Machine Learning Component
+
+For the machine learning side we trained a Random Forest classifier on 1200 synthetic student records. We generated the data ourselves since real student data is not available and we made sure the distributions were realistic across features like stress, confidence, workload, study hours, deadline proximity, and gender. The model predicts one of three risk levels which are low, medium, or high, and it does not just give you the label. It shows the full probability across all three categories so a student who is sitting right on the boundary between medium and high can see that too rather than just getting a single answer that hides the uncertainty. We also surfaced feature importance in the app so a student can see exactly which factors are driving their score up or down. We found that study hours relative to workload and deadline proximity tend to matter the most, which makes intuitive sense, but it means something different when you see it applied to your own numbers. We also checked the model for fairness across gender groups which was something we felt was important to get right.
+
+
+The Rule-Based Expert System
+
+The rule engine is probably the most technically interesting part of what we built. We designed 22 hand-crafted rules that cover stress levels, confidence, workload, deadline urgency, and how adequate a student's study hours are relative to how many modules they are carrying. The rules are not independent and derived facts from earlier rules feed into later ones, which is what makes forward chaining powerful. The system fires rules one by one based on what it knows about the student, building up a picture step by step until it reaches a conclusion about risk level and produces a set of recommendations. We can show which rules fired and in what order so the reasoning is completely transparent. We also implemented backward chaining which runs in the opposite direction. Given a conclusion like high risk it traces back through the rule chain and explains why that conclusion was reached. One thing we spent time getting right was the study adequacy rules. Instead of just checking raw study hours we check the ratio of study hours to number of modules. Someone studying ten hours a week across five modules is in a completely different situation from someone studying ten hours across two and the system needed to understand that distinction.
+
+
+The Search-Based Study Planner
+
+For scheduling we implemented two search algorithms which are A star search and Greedy Best-First search. Both take the subjects a student enters and try to build a weekly timetable that fits within their available daily study hours. A star uses both the cost of what has already been scheduled and an estimate of what remains, so it tends to find better overall plans. Greedy Best-First only looks at the estimate of what remains which makes it faster but means it can commit to choices that seem good locally but turn out to be suboptimal for the full week. We show both schedules side by side in the app along with how many nodes each algorithm explored so a student can actually see the difference in practice. Our heuristic weighs deadline urgency and subject difficulty together so the hardest subjects with the closest deadlines tend to get placed earlier in the week. We also added a node limit to stop the search from hanging when someone has a lot of subjects, which was a practical decision that keeps the app feeling responsive.
+
+
+The Fuzzy Logic Component
+
+As a fourth component we added fuzzy logic which gives a continuous risk score from 0 to 10 instead of snapping straight into a crisp category. We defined fuzzy membership functions for both stress and confidence so a stress level of 6.5 for example is not simply classified as high or moderate but carries a partial degree of membership in both categories at the same time. This gives a more nuanced picture of risk for students who sit near the boundaries of the categories. We also made this component skip gracefully if the scikit-fuzzy library is not installed so the rest of the app keeps working regardless.
+
+
+A Feature We Planned but Did Not Finish
+
+Early on we talked about building an auto-responder where a student could type a question about their subjects, their workload, or anything really, and the system would reply in a proper conversational way. We had the architecture ready for it. The chat message history is already tracked in the app and the whole flow was designed with that kind of interaction in mind. The natural next step was to connect it to a language model API so it could actually respond intelligently, the kind of thing where a student could type something like I have no idea where to start and my deadline is in three days, and the system would help them work through it. We did not have the API key available at the time we were finishing the project and we made the decision not to wire in something half-working rather than keep everything else stable and complete. The scaffolding is there and it will be added when the time is right.
+
+
+How the Work Actually Happened
+
+The development process was real and iterative. We did not sit down and write clean code from the start. We worked through each component methodically, ran into actual bugs, figured out what was wrong, and fixed them. The Streamlit app crashed on form submit early on because helper functions were defined after they were called. The backward chaining returned empty results in some cases because it was not recursing into derived facts correctly. The schedule was showing duplicate subject entries for the same day before we added the merging logic. The fuzzy logic import was failing even after installation because networkx, which scikit-fuzzy depends on, was missing as a transitive dependency. None of these were glossed over. We found each one, understood it properly, and fixed it. We also genuinely compared the two search algorithms rather than just implementing them and moving on. We measured how many nodes each explored and thought through the actual trade-offs between them.
+
+
+Documentation and Presentation
+
+We did not stop at writing the code. We built a full documentation webpage that explains the system architecture, each AI component, and how to use the application. We also created a separate live presentation page so we could show the system working to anyone without them needing to install anything or run commands. The full codebase is on GitHub and the notebooks were set up with one-click Open in Colab badges so anyone can run them immediately. The Streamlit app can also be tunnelled live from Colab so people can interact with the full UI remotely. We wanted the work to actually be seen and used and not just submitted.
+
+
+What This Project Really Means to Us
+
+We will be honest about this. The project was submitted for a university module and it meets everything that module requires but that is not why we took it this seriously. Muhammadjon and I are planning to build a small company working with AI agents. This was one of the first real systems we built together from the ground up, not following a tutorial, not copying a template, but making original decisions about architecture, about how components interact, and about what a real user actually needs from the interface. While we were working on this we were also building other things including multiple bots and automation tools, just exploring what is possible with these systems. We genuinely enjoyed the process. The Student Success Copilot is the most complete thing we produced in this period and we are proud of it, but it is also a foundation. The auto-responder is coming. The API integration is coming. The architecture we built here showed us how to approach it properly when the time comes.
+
+
+Technical Overview
+
+The machine learning component uses a Random Forest Classifier trained on 1200 synthetic records and predicts low, medium, or high risk with full probability output and feature importance. The rule-based system has 22 rules with forward and backward chaining covering stress, workload, confidence, deadline urgency, and study adequacy. The search planner implements A star and Greedy Best-First for weekly timetable generation and compares them side by side with node exploration counts. The fuzzy logic component produces a continuous risk score from 0 to 10 using membership functions for stress and confidence and skips gracefully if the scikit-fuzzy library is unavailable. The web interface is a multi-step Streamlit application with live results, charts, schedule tables, and expandable reasoning explanations. The whole thing is written in Python and runs locally with a single command. All code, notebooks, and documentation are available in the GitHub repository.
